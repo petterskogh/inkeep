@@ -1,7 +1,3 @@
-function setup(): void {
-  setupCssVariables();
-}
-
 function setupCssVariables() {
   // @ts-ignore
   const colors = window.settings.colors();
@@ -14,6 +10,10 @@ function setupCssVariables() {
   for(let i = 0; i < colors.accents.length; i++) {
     body.style.setProperty(`--accent-color-${i+1}`, colors.accents[i]);
   }
+}
+
+function setup() {
+  setupCssVariables();
 }
 
 export default setup;

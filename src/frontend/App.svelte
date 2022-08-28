@@ -1,8 +1,6 @@
 <script lang="ts">
   import Menu from "./components/Menu/Menu.svelte";
   import TextArea from "./components/TextArea/TextArea.svelte";
-  import setup from "./scripts/setup";
-  setup();
 </script>
 
 <main>

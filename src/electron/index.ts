@@ -41,18 +41,18 @@ const createWindow = () => {
 
   const url =
     // process.env.NODE_ENV === "production"
+    // in production, use the statically build version of our application
+    // in dev, target the host and port of the local rollup web server
     isProd
-      ? // in production, use the statically build version of our application
-        `file://${join(__dirname, "public", "index.html")}`
-      : // in dev, target the host and port of the local rollup web server
-        "http://localhost:5000";
+      ? `file://${join(__dirname, "public", "index.html")}`
+      : "http://localhost:5000";
 
   mainWindow.loadURL(url).catch((err) => {
     logger.error(JSON.stringify(err));
     app.quit();
   });
 
-  if (!isProd) mainWindow.webContents.openDevTools();
+  //if (!isProd) mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => {
     mainWindow = null;
@@ -67,7 +67,7 @@ const createWindow = () => {
 
 app.on("ready", createWindow);
 
-// those two events are completely optional to subscrbe to, but that's a common way to get the
+// these two events are completely optional to subscrbe to, but that's a common way to get the
 // user experience people expect to have on macOS: do not quit the application directly
 // after the user close the last window, instead wait for Command + Q (or equivalent).
 app.on("window-all-closed", () => {
@@ -88,11 +88,6 @@ app.on("web-contents-created", (e, contents) => {
 
     // Disable Node.js integration
     webPreferences.nodeIntegration = false;
-
-    // Verify URL being loaded
-    // if (!params.src.startsWith(`file://${join(__dirname)}`)) {
-    //   event.preventDefault(); // We do not open anything now
-    // }
   });
 
   contents.on("will-navigate", (event, navigationUrl) => {
