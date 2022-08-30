@@ -4,8 +4,8 @@ export const activeJournal = writable('');
 
 // Journal
 export const journals = writable([
-  'Journal 1',
-  'Journal 2',
-  'Journal 3',
-  'Journal 4',
+  'journal-1',
+  'journal-2',
+  'journal-3',
+  'journal-4',
 ]);

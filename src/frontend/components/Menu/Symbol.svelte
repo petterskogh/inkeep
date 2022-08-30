@@ -43,7 +43,7 @@
     }
   ];
 
-  export let name: SymbolName = "circles";
+  export let name: SymbolName = 'circles';
   let displayIcon = icons.find((icon) => icon.name === name) ?? icons[0];
 </script>
 

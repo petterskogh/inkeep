@@ -1,19 +1,16 @@
 <script lang='ts'>
   import Journal from './Journal.svelte';
   import Symbol from './Symbol.svelte';
-  import { journals as journalsStore } from '../../stores/journals';
-  import ShortcutWrapper from "../Shortcut/ShortcutWrapper.svelte";
+  import { journals as journalStore } from '../../stores/journals';
 
   let journals: string[] = [];
-  journalsStore.subscribe(journalFileNames => journals = journalFileNames);
+  journalStore.subscribe(journalFileNames => journals = journalFileNames);
 </script>
 
 <div class="menu">
   <span class="upper-section">
     {#each journals as journal, i}
-      <ShortcutWrapper shortcutKey={ (i + 1).toString() }>
-        <Journal bgColor="var(--accent-color-{ i + 1 })" symbol="circles" journal={ journal } />  
-      </ShortcutWrapper>
+      <Journal shortcutKey={ `${i + 1}` } bgColor="var(--accent-color-{ i + 1 })" symbol="circles" journal={ journal } />
     {/each}
   </span>
   <span class="bottom-section">

@@ -1,20 +1,26 @@
-<script>
-  export let shortcutKey = "?";
+<script lang="ts">
+  import type { Key } from "../../utils/types";
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
 
+  export let shortcutKey: Key;
   let showShortcut = false;
 
-  function onKeyDown(e) {
-    switch (e.keyCode) {
-      case 17:
-        showShortcut = true;
-        break;
+  function onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'Control') {
+      showShortcut = true;
+      e.preventDefault();
     }
   }
-  function onKeyUp(e) {
-    switch (e.keyCode) {
-      case 17:
-        showShortcut = false;
-        break;
+
+  function onKeyUp(e: KeyboardEvent) {
+    if (e.key === 'Control') {
+      showShortcut = false;
+      e.preventDefault();
+    }
+    if(showShortcut && e.key === shortcutKey) {
+      dispatch('press');
+      e.preventDefault();
     }
   }
 </script>

@@ -1,16 +1,24 @@
 <script lang='ts'>
   import Symbol from "./Symbol.svelte";
   import { activeJournal } from '../../stores/journals';
-  import type { Color, SymbolName } from "../../utils/types";
+  import type { Color, Key, SymbolName } from "../../utils/types";
+  import ShortcutWrapper from "../Shortcut/ShortcutWrapper.svelte";
 
   export let bgColor: Color;
   export let symbol: SymbolName;
   export let journal = ""; // File path of the journal
+  export let shortcutKey: Key;
+
+  function setActiveJournal() {
+    activeJournal.set(journal);
+  }
 </script>
 
-<span class="journal" style="background-color: { bgColor };" on:click={ () => activeJournal.set(journal) }>
-  <Symbol name={ symbol } />
-</span>
+<ShortcutWrapper shortcutKey="{shortcutKey}" on:press={ setActiveJournal }>
+  <span class="journal" style="background-color: { bgColor };" on:click={ setActiveJournal }>
+    <Symbol name={ symbol } />
+  </span>
+</ShortcutWrapper>
 
 <style>
   .journal {
