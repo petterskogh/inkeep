@@ -9,8 +9,8 @@ Inkeep is built using Electron and Svelte.
 ## Get started
 
 ```bash
-git clone https://github.com/petterskogh/inkeep.git Inkeep
-cd InKeep
+git clone https://github.com/petterskogh/inkeep.git inkeep
+cd inkeep
 ```
 
 _Note that you will need to have [Node.js](https://nodejs.org) installed._
